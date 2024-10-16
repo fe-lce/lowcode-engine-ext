@@ -1,8 +1,14 @@
 import * as React from 'react';
 import { Component, Fragment } from 'react';
 import { Button } from '@alifd/next';
-import { common } from '@alilc/lowcode-engine';
-import { IPublicTypeSetterType, IPublicModelSettingField, IPublicTypeFieldConfig, IPublicTypeCustomView, IPublicTypeTitleContent } from '@alilc/lowcode-types';
+import { common } from '@felce/lowcode-engine';
+import {
+  IPublicTypeSetterType,
+  IPublicModelSettingField,
+  IPublicTypeFieldConfig,
+  IPublicTypeCustomView,
+  IPublicTypeTitleContent,
+} from '@felce/lowcode-types';
 import CustomIcon from '../../components/custom-icon';
 import './index.less';
 
@@ -64,11 +70,13 @@ function getItemsFromProps(props: RowSetterProps, state?: RowSetterState) {
     for (let i = 0; i < config.items.length; i++) {
       const conf = config.items[i];
       if (conf.isRequired || conf.important || (conf.setter as any)?.isRequired) {
-        const item = state?.items?.filter(d => d.name === conf.name)?.[0] || field.createField({
-          ...conf,
-          // in column-cell
-          forceInline: 3,
-        });
+        const item =
+          state?.items?.filter((d) => d.name === conf.name)?.[0] ||
+          field.createField({
+            ...conf,
+            // in column-cell
+            forceInline: 3,
+          });
         const originalSetValue = item.extraProps.setValue;
         item.extraProps.setValue = (...args) => {
           // 调用子字段本身的 setValue
@@ -147,7 +155,7 @@ class RowSetter extends Component<RowSetterProps, RowSetterState> {
     if (!this.pipe) {
       this.pipe = (this.context as PopupPipe).create({
         width: 320,
-        canCloseByOutSideClick: config.canCloseByOutSideClick
+        canCloseByOutSideClick: config.canCloseByOutSideClick,
       });
     }
 

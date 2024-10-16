@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, ErrorInfo, useMemo } from 'react';
 import { Radio, Select, Box } from '@alifd/next';
-import { SettingTarget, CustomView } from '@alilc/lowcode-types';
+import { SettingTarget, CustomView } from '@felce/lowcode-types';
 
 import './index.scss';
 import { BehaviorAction } from './types';
@@ -61,10 +61,10 @@ const BehaviorSetter: CustomView = ({
   if (enableTooltipAction) {
     defaultActions.push(defaultActionMap.tooltip);
   }
-  const behaviorActions = useMemo(() => [
-    ...defaultActions,
-    ...propsBehaviorActions,
-  ], [propsBehaviorActions]);
+  const behaviorActions = useMemo(
+    () => [...defaultActions, ...propsBehaviorActions],
+    [propsBehaviorActions],
+  );
 
   const updateCurrentEventBehavior = (type: string, newVal: any) => {
     onChange({
@@ -110,26 +110,32 @@ const BehaviorSetter: CustomView = ({
         </Box>
       </Box>
       <ErrorBoundary>
-        {behaviorOption && behaviorOption.render({
-          field,
-          value: currentBehavior[currentBehaviorType],
-          onChange: (behaviorValue: Record<string, any>) => {
-            field.parent.setPropValue(currentEvent, behaviorOption.toActionValue(behaviorValue, extendedOptions[currentBehaviorType]));
-            updateCurrentEventBehavior(currentBehaviorType, behaviorValue);
-          },
-          options: currentBehaviorType === 'link' ? {
-            ...extendedOptions[currentBehaviorType],
-            url,
-            responseFormatter,
-          } : extendedOptions[currentBehaviorType],
-        })}
+        {behaviorOption &&
+          behaviorOption.render({
+            field,
+            value: currentBehavior[currentBehaviorType],
+            onChange: (behaviorValue: Record<string, any>) => {
+              field.parent.setPropValue(
+                currentEvent,
+                behaviorOption.toActionValue(behaviorValue, extendedOptions[currentBehaviorType]),
+              );
+              updateCurrentEventBehavior(currentBehaviorType, behaviorValue);
+            },
+            options:
+              currentBehaviorType === 'link'
+                ? {
+                    ...extendedOptions[currentBehaviorType],
+                    url,
+                    responseFormatter,
+                  }
+                : extendedOptions[currentBehaviorType],
+          })}
       </ErrorBoundary>
     </div>
   );
 };
 
 export default BehaviorSetter;
-
 
 // eslint-disable-next-line @iceworks/best-practices/recommend-functional-component
 class ErrorBoundary extends React.Component {

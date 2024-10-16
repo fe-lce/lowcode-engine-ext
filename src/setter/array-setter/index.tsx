@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { Component, Fragment } from 'react';
-import { common } from '@alilc/lowcode-engine';
+import { common } from '@felce/lowcode-engine';
 import { Button, Message } from '@alifd/next';
-import { IPublicModelSettingField, IPublicTypeSetterType, IPublicTypeFieldConfig, IPublicTypeSetterConfig } from '@alilc/lowcode-types';
+import {
+  IPublicModelSettingField,
+  IPublicTypeSetterType,
+  IPublicTypeFieldConfig,
+  IPublicTypeSetterConfig,
+} from '@felce/lowcode-types';
 import CustomIcon from '../../components/custom-icon';
 import Sortable from './sortable';
 import './style.less';
@@ -21,7 +26,12 @@ interface ArraySetterState {
  * @param target
  * @param value
  */
-function onItemChange (target: IPublicModelSettingField, index: number, item: IPublicModelSettingField, props: ArraySetterProps) {
+function onItemChange(
+  target: IPublicModelSettingField,
+  index: number,
+  item: IPublicModelSettingField,
+  props: ArraySetterProps,
+) {
   const targetPath: Array<string | number> = target?.path;
   if (!targetPath || targetPath.length < 2) {
     console.warn(
@@ -46,7 +56,7 @@ function onItemChange (target: IPublicModelSettingField, index: number, item: IP
   } catch (e) {
     console.warn('[ArraySetter] extraProps.setValue failed :', e);
   }
-};
+}
 
 interface ArraySetterProps {
   value: any[];
@@ -56,7 +66,7 @@ interface ArraySetterProps {
   multiValue?: boolean;
   hideDescription?: boolean;
   onChange?: Function;
-  extraProps: {renderFooter?: (options: ArraySetterProps & {onAdd: (val?: {}) => any}) => any}
+  extraProps: { renderFooter?: (options: ArraySetterProps & { onAdd: (val?: {}) => any }) => any };
 }
 
 export class ListSetter extends Component<ArraySetterProps, ArraySetterState> {
@@ -106,7 +116,7 @@ export class ListSetter extends Component<ArraySetterProps, ArraySetterState> {
     const values: any[] = [];
     const newItems: IPublicModelSettingField[] = [];
     sortedIds.map((id, index) => {
-      const itemIndex = items.findIndex(item => item.id === id);
+      const itemIndex = items.findIndex((item) => item.id === id);
       values[index] = oldValues[itemIndex];
       newItems[index] = items[itemIndex];
       return id;
@@ -114,11 +124,15 @@ export class ListSetter extends Component<ArraySetterProps, ArraySetterState> {
     onChange?.(values);
   }
 
-  onAdd(newValue?: {[key: string]: any}) {
+  onAdd(newValue?: { [key: string]: any }) {
     const { itemSetter, field, onChange, value = [] } = this.props;
     const values = value || [];
     const initialValue = (itemSetter as any)?.initialValue;
-    const defaultValue = newValue ? newValue : (typeof initialValue === 'function' ? initialValue(field) : initialValue);
+    const defaultValue = newValue
+      ? newValue
+      : typeof initialValue === 'function'
+      ? initialValue(field)
+      : initialValue;
     values.push(defaultValue);
     this.scrollToLast = true;
     onChange?.(values);
@@ -137,7 +151,9 @@ export class ListSetter extends Component<ArraySetterProps, ArraySetterState> {
       i++;
     }
     removed.remove();
-    const pureValues = values.map((item: any) => typeof(item) === 'object' ? Object.assign({}, item):item);
+    const pureValues = values.map((item: any) =>
+      typeof item === 'object' ? Object.assign({}, item) : item,
+    );
     onChange?.(pureValues);
   }
 
@@ -195,15 +211,19 @@ export class ListSetter extends Component<ArraySetterProps, ArraySetterState> {
         ) : null}
         {content}
         <div className="lc-setter-list-add">
-          {
-            !renderFooter ? (
-              <Button text type="primary" onClick={() => {
-                this.onAdd()
-              }}>
-                <span>添加一项 +</span>
-              </Button>
-            ) : renderFooter({...this.props, onAdd: this.onAdd.bind(this),})
-          }
+          {!renderFooter ? (
+            <Button
+              text
+              type="primary"
+              onClick={() => {
+                this.onAdd();
+              }}
+            >
+              <span>添加一项 +</span>
+            </Button>
+          ) : (
+            renderFooter({ ...this.props, onAdd: this.onAdd.bind(this) })
+          )}
         </div>
       </div>
     );

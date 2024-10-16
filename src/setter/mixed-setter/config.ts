@@ -1,16 +1,16 @@
-import { ReactNode } from "react"
-import { SettingField } from '@alilc/lowcode-engine';
+import { ReactNode } from 'react';
+import { SettingField } from '@felce/lowcode-engine';
 
 class MixedSetterConfig {
   config: {
-    renderSlot?: (props: {bindCode?: string, field?: SettingField}) => ReactNode
-  } = {}
+    renderSlot?: (props: { bindCode?: string; field?: SettingField }) => ReactNode;
+  } = {};
 
   setConfig(config: {
-    renderSlot?: (props: {bindCode?: string, field?: SettingField}) => ReactNode
+    renderSlot?: (props: { bindCode?: string; field?: SettingField }) => ReactNode;
   }) {
     this.config = config;
   }
 }
 
-export const MixedSetterController = new MixedSetterConfig()
+export const MixedSetterController = new MixedSetterConfig();

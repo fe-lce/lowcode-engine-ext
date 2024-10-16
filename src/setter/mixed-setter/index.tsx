@@ -1,7 +1,7 @@
 import React, { Component, ComponentClass } from 'react';
 import classNames from 'classnames';
 import { Dropdown, Menu } from '@alifd/next';
-import { common, setters, SettingField } from '@alilc/lowcode-engine';
+import { common, setters, SettingField } from '@felce/lowcode-engine';
 import {
   SetterConfig,
   CustomView,
@@ -10,10 +10,10 @@ import {
   TitleContent,
   isSetterConfig,
   isDynamicSetter,
-} from '@alilc/lowcode-types';
+} from '@felce/lowcode-types';
 import { IconConvert } from './icons/convert';
 import { intlNode } from './locale';
-import { MixedSetterController } from './config'
+import { MixedSetterController } from './config';
 
 import './index.less';
 import { IconVariable } from './icons/variable';
@@ -35,16 +35,16 @@ export interface SetterItem {
 const dash = '_';
 function getMixedSelect(field) {
   const path = field.path || [];
-  if(path.length) {
-    const key = `_unsafe_MixedSetter${dash}${path[path.length-1]}${dash}select`
+  if (path.length) {
+    const key = `_unsafe_MixedSetter${dash}${path[path.length - 1]}${dash}select`;
     const newPath = [...path];
     newPath.splice(path.length - 1, 1, key);
-    const newKey = field.node.getPropValue(newPath.join('.'))
-    if(newKey) return newKey;
+    const newKey = field.node.getPropValue(newPath.join('.'));
+    if (newKey) return newKey;
     // 兼容下以前的问题情况，如果捕获到，获取 oldUnsafeKey 取值并将其直接置空
     const oldUnsafeKey = `_unsafe_MixedSetter${dash}${path.join(dash)}${dash}select`;
     const oldUsedSetter = field.node.getPropValue(oldUnsafeKey);
-    if(oldUsedSetter) {
+    if (oldUsedSetter) {
       field.node.setPropValue(newPath.join('.'), oldUsedSetter);
       field.node.setPropValue(oldUnsafeKey, undefined);
     }
@@ -54,10 +54,10 @@ function getMixedSelect(field) {
 }
 function setMixedSelect(field, usedSetter) {
   const path = field.path || [];
-  if(path.length) {
-    const key = `_unsafe_MixedSetter${dash}${path[path.length-1]}${dash}select`
+  if (path.length) {
+    const key = `_unsafe_MixedSetter${dash}${path[path.length - 1]}${dash}select`;
     path.splice(path.length - 1, 1, key);
-    field.node.setPropValue(path.join('.'), usedSetter)
+    field.node.setPropValue(path.join('.'), usedSetter);
   }
 }
 
@@ -135,7 +135,7 @@ function nomalizeSetters(
   const uniqSetters = formattedSetters.reduce((map, s) => {
     map.set(s.name, s);
     return map;
-  }, new Map<string, any>())
+  }, new Map<string, any>());
 
   const hasComplexSetter = formattedSetters.filter((item) =>
     ['ArraySetter', 'ObjectSetter'].includes(item.setter),
@@ -217,7 +217,7 @@ class MixedSetter extends Component<{
       }
     } else {
       // 变量类型直接设undefined会引起初始值变化
-      if (name !== this.used ) {
+      if (name !== this.used) {
         // reset value
         field.setValue(undefined);
       }
@@ -410,7 +410,7 @@ class MixedSetter extends Component<{
   private renderSwitchAction(currentSetter?: SetterItem) {
     const usedName = currentSetter?.name || this.used;
     const triggerNode = (
-      <div ref={ref => this.triggerNodeRef = ref}>
+      <div ref={(ref) => (this.triggerNodeRef = ref)}>
         <Title
           title={{
             tip: intlNode('Switch Setter'),
@@ -476,14 +476,14 @@ class MixedSetter extends Component<{
       >
         {contents.setterContent}
         <div className="lc-setter-actions">{contents.actions}</div>
-        {!!MixedSetterController.config.renderSlot &&
+        {!!MixedSetterController.config.renderSlot && (
           <div className="lc-action-slot">
             {MixedSetterController.config.renderSlot?.({
               field,
               bindCode: field.getValue()?.value,
             })}
           </div>
-        }
+        )}
       </div>
     );
   }
@@ -491,5 +491,5 @@ class MixedSetter extends Component<{
 interface MixedSetterType extends ComponentClass {
   controller: typeof MixedSetterController;
 }
-export default MixedSetter as unknown as MixedSetterType
+export default MixedSetter as unknown as MixedSetterType;
 (MixedSetter as unknown as MixedSetterType).controller = MixedSetterController;

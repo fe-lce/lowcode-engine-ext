@@ -9,7 +9,7 @@ import { StyleData } from './utils/types';
 import { ConfigProvider } from '@alifd/next';
 import enUS from '@alifd/next/lib/locale/en-us';
 import zhCN from '@alifd/next/lib/locale/zh-cn';
-import { common } from '@alilc/lowcode-engine';
+import { common } from '@felce/lowcode-engine';
 import './index.less';
 
 const { getLocale } = common.utils.createIntl?.() || {};
@@ -140,11 +140,7 @@ export default class StyleSetterV2 extends React.PureComponent<StyleSetterProps>
           )}
 
           {showModuleList.filter((item) => item == 'layout').length > 0 && (
-            <Layout
-              onStyleChange={this.onStyleChange}
-              styleData={styleData}
-              {...this.props}
-             />
+            <Layout onStyleChange={this.onStyleChange} styleData={styleData} {...this.props} />
           )}
 
           {showModuleList.filter((item) => item == 'font').length > 0 && (
@@ -152,27 +148,15 @@ export default class StyleSetterV2 extends React.PureComponent<StyleSetterProps>
           )}
 
           {showModuleList.filter((item) => item == 'background').length > 0 && (
-            <Background
-              onStyleChange={this.onStyleChange}
-              styleData={styleData}
-              {...this.props}
-             />
+            <Background onStyleChange={this.onStyleChange} styleData={styleData} {...this.props} />
           )}
 
           {showModuleList.filter((item) => item == 'position').length > 0 && (
-            <Position
-              onStyleChange={this.onStyleChange}
-              styleData={styleData}
-              {...this.props}
-             />
+            <Position onStyleChange={this.onStyleChange} styleData={styleData} {...this.props} />
           )}
 
           {showModuleList.filter((item) => item == 'border').length > 0 && (
-            <Border
-              onStyleChange={this.onStyleChange}
-              styleData={styleData}
-              {...this.props}
-             />
+            <Border onStyleChange={this.onStyleChange} styleData={styleData} {...this.props} />
           )}
 
           {/* {initFlag && (

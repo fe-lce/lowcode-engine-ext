@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
 import { Button, Icon, Dialog } from '@alifd/next';
 import MonacoEditor from '@alilc/lowcode-plugin-base-monaco-editor';
-import { event, skeleton } from '@alilc/lowcode-engine';
+import { event, skeleton } from '@felce/lowcode-engine';
 import { js_beautify } from 'js-beautify';
 import './index.less';
 
 const SETTER_NAME = 'function-setter';
 
 const defaultEditorOption = {
-  width:'100%',
-  height:'95%',
+  width: '100%',
+  height: '95%',
   options: {
     readOnly: false,
     automaticLayout: true,

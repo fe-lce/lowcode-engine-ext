@@ -1,4 +1,4 @@
-import { common } from '@alilc/lowcode-engine';
+import { common } from '@felce/lowcode-engine';
 import enUS from './en-US.json';
 import zhCN from './zh-CN.json';
 
@@ -8,7 +8,7 @@ const { intl } = common?.utils?.createIntl?.({
 }) || {
   intl: (id) => {
     return zhCN[id];
-  }
+  },
 };
 
 export { intl };

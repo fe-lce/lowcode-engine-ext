@@ -8,7 +8,7 @@ order: 1
 ```jsx
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import LowcodeEngineExt from '@alilc/lowcode-engine-ext';
+import LowcodeEngineExt from '@felce/lowcode-engine-ext';
 
 class App extends Component {
   render() {

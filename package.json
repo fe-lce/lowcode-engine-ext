@@ -1,7 +1,7 @@
 {
-  "name": "@alilc/lowcode-engine-ext",
-  "version": "1.0.6",
-  "description": "",
+  "name": "@felce/lowcode-engine-ext",
+  "version": "1.1.0",
+  "description": "低代码官方提供的扩展集 - Official extension set provided by lowcode-engine",
   "files": [
     "dist",
     "es",
@@ -21,18 +21,18 @@
     "stylelint": "stylelint \"**/*.{css,scss,less}\"",
     "lint": "npm run eslint && npm run stylelint",
     "f2elint-scan": "f2elint scan -q",
-    "f2elint-fix": "f2elint fix",
-    "syncOss": "node ./scripts/sync-oss.js"
+    "f2elint-fix": "f2elint fix"
   },
   "keywords": [
-    "ice",
+    "lowcode",
     "react",
-    "component"
+    "ext"
   ],
   "dependencies": {
     "@alilc/lowcode-plugin-base-monaco-editor": "^1.1.1",
-    "@alilc/lowcode-types": "^1.0.0",
-    "@alilc/lowcode-utils": "^1.0.0",
+    "@felce/lowcode-engine": "^1.4.0",
+    "@felce/lowcode-types": "^1.4.0",
+    "@felce/lowcode-utils": "^1.4.0",
     "antd": "^5.2.3",
     "classnames": "^2.2.6",
     "cssjson": "^2.1.3",
@@ -49,7 +49,7 @@
     "build-plugin-fusion": "^0.1.0",
     "build-plugin-fusion-css": "1.0.3",
     "build-plugin-moment-locales": "^0.1.0",
-    "@alilc/lowcode-editor-skeleton": "^1.0.0",
+    "@felce/lowcode-editor-skeleton": "^1.0.0",
     "build-plugin-react-app": "^1.1.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -72,6 +72,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "license": "MIT",
-  "homepage": "https://unpkg.com/@alilc/lowcode-engine-ext@1.0.6/build/index.html",
-  "repository": "git@github.com:alibaba/lowcode-engine-ext.git"
+  "homepage": "https://unpkg.com/@felce/lowcode-engine-ext@1.1.0/build/index.html",
+  "repository": "git@github.com:fe-lce/lowcode-engine-ext.git"
 }

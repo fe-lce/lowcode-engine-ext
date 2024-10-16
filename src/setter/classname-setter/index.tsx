@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Select } from '@alifd/next';
-import { project } from '@alilc/lowcode-engine';
+import { project } from '@felce/lowcode-engine';
 import './index.less';
 
 export interface PluginProps {
@@ -74,14 +74,14 @@ export default class ClassNameView extends PureComponent<PluginProps> {
       selectValue = value.split(' ');
     }
 
-    selectValue.forEach(current => {
-      if(!classnameList.some(cls => cls === current)) {
+    selectValue.forEach((current) => {
+      if (!classnameList.some((cls) => cls === current)) {
         dataSource.push({
           value: current,
           label: current,
         });
       }
-    })
+    });
 
     this.setState({
       dataSource,

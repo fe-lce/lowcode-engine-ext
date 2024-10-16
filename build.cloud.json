@@ -9,8 +9,8 @@
     "react-dom": "var window.ReactDOM",
     "prop-types": "var window.PropTypes",
     "rax": "var window.Rax",
-    "@alilc/lowcode-engine": "var window.AliLowCodeEngine",
-    "@alilc/lowcode-engine-ext": "var window.AliLowCodeEngineExt",
+    "@felce/lowcode-engine": "var window.AliLowCodeEngine",
+    "@felce/lowcode-engine-ext": "var window.AliLowCodeEngineExt",
     "moment": "var moment",
     "lodash": "var _",
     "@alifd/next": "var Next"
@@ -22,12 +22,18 @@
   "sourceMap": true,
   "plugins": [
     "build-plugin-react-app",
-    ["build-plugin-fusion", {
-      "externalNext": "umd"
-    }],
-    ["build-plugin-moment-locales", {
-      "locales": ["zh-cn"]
-    }],
+    [
+      "build-plugin-fusion",
+      {
+        "externalNext": "umd"
+      }
+    ],
+    [
+      "build-plugin-moment-locales",
+      {
+        "locales": ["zh-cn"]
+      }
+    ],
     "./build.plugin.js"
   ]
 }

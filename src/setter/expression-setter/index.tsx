@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Select, Balloon } from '@alifd/next';
-import { project } from '@alilc/lowcode-engine';
+import { project } from '@felce/lowcode-engine';
 import * as acorn from 'acorn';
 
-import { isJSExpression, generateI18n } from './locale/utils';
+import { generateI18n } from './locale/utils';
 import zhCN from './locale/zh-CN';
 
 import './index.less';
+import { isJSExpression } from '@felce/lowcode-utils';
 
 const { Option, AutoComplete } = Select;
 const { Tooltip } = Balloon;
@@ -225,7 +226,7 @@ export default class ExpressionView extends PureComponent {
    */
   filterOption(inputValue: string, item: { value: string | any[] }) {
     const cursorIndex = this.getInputCursorPosition();
-    if (typeof(inputValue)!='string') return false;
+    if (typeof inputValue != 'string') return false;
     const preStr = inputValue.substr(0, cursorIndex);
     const lastKey: string[] = preStr.split('.').slice(-1);
     if (!lastKey) return true;

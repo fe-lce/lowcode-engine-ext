@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isJSExpression, isJSFunction, isJSSlot } from '@alilc/lowcode-types';
+import { isJSExpression, isJSFunction, isJSSlot } from '@felce/lowcode-utils';
 import { isPlainObject } from './utils';
 import { DatePicker, TimePicker } from '@alifd/next';
 import moment from 'moment';
@@ -26,7 +26,7 @@ import VariableSetter from './setter/variable-setter';
 import TitleSetter from './setter/title-setter';
 import EventBindDialog from './plugin/plugin-event-bind-dialog';
 import VariableBindDialog from './plugin/plugin-variable-bind-dialog';
-import SimpleVariableBindPopup from './plugin/plugin-simple-bind-popup'
+import SimpleVariableBindPopup from './plugin/plugin-simple-bind-popup';
 import './index.less';
 import packagesInfo from '../package.json';
 // suggest: 做成 StringSetter 的一个参数，
@@ -166,7 +166,8 @@ const DataSlotSetter = {
   valueType: ['JSSlot'],
 };
 
-const engineExt = {
+// TODO 类型定义
+const engineExt: any = {
   setters: {
     StringSetter,
     NumberSetter,
@@ -232,7 +233,7 @@ const engineExt = {
   },
 };
 engineExt.version = packagesInfo.version;
-window.AliLowCodeEngineExt = engineExt;
+(window as any).AliLowCodeEngineExt = engineExt;
 console.log(
   '%c AliLowCodeExt %c v'.concat(engineExt.version, ' '),
   'padding: 2px 1px; border-radius: 3px 0 0 3px; color: #fff; background: #5584ff; font-weight: bold;',

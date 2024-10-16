@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { SettingTarget } from '@alilc/lowcode-types';
+import { SettingTarget } from '@felce/lowcode-types';
 import { Select, Box } from '@alifd/next';
 import { BehaviorActionProps, BehaviorAction } from '../types';
 
@@ -50,16 +50,18 @@ const DialogContent: React.FC<BehaviorActionProps> = ({ value = {}, onChange, fi
   );
 };
 
-
 export const dialogBehaviorAction: BehaviorAction<DialogActionValue> = {
   name: 'dialog',
   title: '弹窗',
   render: (props) => <DialogContent {...props} />,
-  toActionValue: (value) => (value.id ? {
-    type: 'JSExpression',
-    value: `function() {
+  toActionValue: (value) =>
+    value.id
+      ? {
+          type: 'JSExpression',
+          value: `function() {
       const dialog = this.$('${value.id}');
       dialog.show();
     }`,
-  } : null),
+        }
+      : null,
 };

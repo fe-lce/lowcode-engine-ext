@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import * as React from 'react';
-import { event, project, skeleton } from '@alilc/lowcode-engine';
+import { event, project, skeleton } from '@felce/lowcode-engine';
 import { Dialog, Search, Input, Balloon, Icon, Switch, Message } from '@alifd/next';
-import { PluginProps } from '@alilc/lowcode-types';
+import { PluginProps } from '@felce/lowcode-types';
 import MonacoEditor from '@alilc/lowcode-plugin-base-monaco-editor';
 import './index.less';
 
@@ -14,8 +14,8 @@ const tempPlaceHolderReg = /\$\{extParams\}/g;
 const propEventsReg = /(this\.)?props\.[a-zA-Z0-9\-_]+/;
 
 const defaultEditorOption = {
-  height:'319px',
-  width:'100%',
+  height: '319px',
+  width: '100%',
   readOnly: false,
   automaticLayout: true,
   folding: true, // 默认开启折叠代码功能
@@ -214,10 +214,9 @@ export default class EventBindDialog extends Component<PluginProps> {
     if (template) {
       const functionName = this.pickupFunctionName(template);
 
-      formatTemp = template.replace(new RegExp(`^s*${  functionName}`), eventName);
+      formatTemp = template.replace(new RegExp(`^s*${functionName}`), eventName);
       if (useParams) {
         formatTemp = formatTemp.replace(tempPlaceHolderReg, 'extParams');
-
       } else {
         const leftIndex = formatTemp.indexOf('(');
         const rightIndex = formatTemp.indexOf(')');
@@ -233,12 +232,10 @@ export default class EventBindDialog extends Component<PluginProps> {
 
         // 重新join进去
 
-        formatTemp =
-          `${formatTemp.substr(0, leftIndex)
-          }(${
-          paramList.join(',')
-          })${
-          formatTemp.substr(rightIndex + 1, formatTemp.length)}`;
+        formatTemp = `${formatTemp.substr(0, leftIndex)}(${paramList.join(',')})${formatTemp.substr(
+          rightIndex + 1,
+          formatTemp.length,
+        )}`;
       }
     }
 
@@ -347,7 +344,7 @@ export default class EventBindDialog extends Component<PluginProps> {
             <div className="dialog-small-title">
               事件名称
               {(window as any).lowcodeSetterSwitch?.enablePropsEvents && (
-                <HelpTip iconStyle={{marginLeft: 4}}>
+                <HelpTip iconStyle={{ marginLeft: 4 }}>
                   如需绑定 props 属性，可通过 props.xxx 进行绑定
                 </HelpTip>
               )}

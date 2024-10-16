@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Radio, Menu, Table, Icon } from '@alifd/next';
-import { event, project, skeleton } from '@alilc/lowcode-engine';
+import { event, project, skeleton } from '@felce/lowcode-engine';
 import nativeEvents from './native-events';
 
 import './index.less';

@@ -1,4 +1,4 @@
-import { SVGIcon, IconProps } from '@alilc/lowcode-utils';
+import { SVGIcon, IconProps } from '@felce/lowcode-utils';
 
 export function IconSlot(props: IconProps) {
   return (

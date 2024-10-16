@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Search, Button, Icon } from '@alifd/next';
-import { project } from '@alilc/lowcode-engine';
+import { project } from '@felce/lowcode-engine';
 import './index.less';
 import lang from './lang.json';
 class I18nSetter extends Component {

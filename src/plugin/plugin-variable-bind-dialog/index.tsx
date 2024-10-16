@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dialog, Input, Button, Icon, Tree } from '@alifd/next';
-import { PluginProps } from '@alilc/lowcode-types';
-import { event, project } from '@alilc/lowcode-engine';
+import { PluginProps } from '@felce/lowcode-types';
+import { event, project } from '@felce/lowcode-engine';
 import MonacoEditor from '@alilc/lowcode-plugin-base-monaco-editor';
 import './index.less';
 
@@ -25,7 +25,7 @@ const defaultEditorProps = {
 };
 
 const defaultEditorOption = {
-  options:{
+  options: {
     readOnly: false,
     automaticLayout: true,
     folding: false, // 默认开启折叠代码功能
@@ -43,15 +43,15 @@ const defaultEditorOption = {
     scrollbar: {
       vertical: 'auto',
       horizontal: 'auto',
-      verticalScrollbarSize:0
+      verticalScrollbarSize: 0,
     },
-  }
+  },
 };
 
 export default class VariableBindDialog extends Component<PluginProps> {
   state = {
     visiable: false,
-    isOverFlowMaxSize:false,
+    isOverFlowMaxSize: false,
     // stateVaroableList: [],
     helpText: HelpText,
     // contextKeys: [],
@@ -65,7 +65,7 @@ export default class VariableBindDialog extends Component<PluginProps> {
     minimize: false, // 是否最小化
     autoExpandParent: true,
     expandedKeys: [],
-    maxTextSize:0, // 绑定变量最大字符数
+    maxTextSize: 0, // 绑定变量最大字符数
   };
 
   private editorJsRef = React.createRef();
@@ -85,9 +85,6 @@ export default class VariableBindDialog extends Component<PluginProps> {
         this.openDialog();
       });
     });
-
-    
-
   }
 
   exportSchema = () => {
@@ -100,7 +97,7 @@ export default class VariableBindDialog extends Component<PluginProps> {
     const fieldValue = field.getValue();
     const jsCode = fieldValue?.value;
 
-    const {maxTextSize} = this.props.config?.props || {}
+    const { maxTextSize } = this.props.config?.props || {};
 
     this.setState({
       jsCode,
@@ -111,9 +108,9 @@ export default class VariableBindDialog extends Component<PluginProps> {
       selParentVariable: null, // 选中的父级变量
       childrenVariableList: [], // 子级变量列表
       minimize: false, // 是否最小化
-      isOverFlowMaxSize:false,
+      isOverFlowMaxSize: false,
       // 配置的最大文本长度，默认为0，不控制
-      maxTextSize:maxTextSize?maxTextSize:0
+      maxTextSize: maxTextSize ? maxTextSize : 0,
     });
   };
 
@@ -322,24 +319,20 @@ export default class VariableBindDialog extends Component<PluginProps> {
   };
 
   updateCode = (newCode) => {
-
     let isOverFlowMaxSize = false;
-    if (this.state.maxTextSize){
-      isOverFlowMaxSize = newCode?.length>this.state.maxTextSize
+    if (this.state.maxTextSize) {
+      isOverFlowMaxSize = newCode?.length > this.state.maxTextSize;
     }
-
 
     this.setState(
       {
         jsCode: newCode,
-        isOverFlowMaxSize
+        isOverFlowMaxSize,
       },
       this.autoSave,
     );
 
-
-
-    console.log('size====',newCode?.length);
+    console.log('size====', newCode?.length);
   };
 
   autoSave = () => {
@@ -528,19 +521,17 @@ export default class VariableBindDialog extends Component<PluginProps> {
   };
 
   renderErrorMessage = () => {
-    const {isOverFlowMaxSize,maxTextSize} = this.state;
-    return (
-      isOverFlowMaxSize ? <span className='error-message'>表达式文本不能超过{maxTextSize}个字符，请换成函数调用</span> :null
-      
-    )
-  }
+    const { isOverFlowMaxSize, maxTextSize } = this.state;
+    return isOverFlowMaxSize ? (
+      <span className="error-message">表达式文本不能超过{maxTextSize}个字符，请换成函数调用</span>
+    ) : null;
+  };
 
   isBtnDisable = () => {
-    const {jsCode,isOverFlowMaxSize} = this.state;
+    const { jsCode, isOverFlowMaxSize } = this.state;
 
     return jsCode === undefined || jsCode?.length == 0 || isOverFlowMaxSize;
-  }
-
+  };
 
   render() {
     const {
@@ -644,7 +635,13 @@ export default class VariableBindDialog extends Component<PluginProps> {
 
             <div className="dialog-right-container">
               <div className="dialog-small-title">绑定 {this.renderErrorMessage()}</div>
-              <div id="jsEditorDom" className={isOverFlowMaxSize?"editor-context editor-context-error":"editor-context"} ref={this.editorJsRef}>
+              <div
+                id="jsEditorDom"
+                className={
+                  isOverFlowMaxSize ? 'editor-context editor-context-error' : 'editor-context'
+                }
+                ref={this.editorJsRef}
+              >
                 <div className="editor-type-tag">=</div>
                 <MonacoEditor
                   value={jsCode}
