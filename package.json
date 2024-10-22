@@ -49,7 +49,7 @@
     "build-plugin-fusion": "^0.1.0",
     "build-plugin-fusion-css": "1.0.3",
     "build-plugin-moment-locales": "^0.1.0",
-    "@felce/lowcode-editor-skeleton": "^1.0.0",
+    "@felce/lowcode-editor-skeleton": "^1.4.0",
     "build-plugin-react-app": "^1.1.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
