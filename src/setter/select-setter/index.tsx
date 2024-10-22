@@ -12,7 +12,7 @@ interface SelectSetterProps {
    */
   showSearch?: boolean;
   // 是否可以清除
-  hasClear?:boolean
+  hasClear?: boolean;
 }
 
 interface SelectSetterState {
@@ -58,15 +58,15 @@ export default class SelectSetter extends PureComponent<SelectSetterProps, Selec
   };
 
   render() {
-    const { options, onChange, mode, value, showSearch, hasClear } = this.props;
+    const { options, onChange, mode, value, showSearch, hasClear, defaultValue } = this.props;
     return (
       <Select
         autoWidth={false}
         size="small"
-        value={value}
+        value={value ?? defaultValue}
         dataSource={formateOptions(options)}
         mode={mode}
-        onChange={(val) => {
+        onChange={(val: any) => {
           onChange && onChange(val);
         }}
         style={{ width: '100%' }}
