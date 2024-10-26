@@ -9,6 +9,11 @@ export interface PluginProps {
   onChange: any;
 }
 
+interface IOption {
+  label: string;
+  value: string;
+}
+
 export default class ClassNameView extends PureComponent<PluginProps> {
   static display = 'ClassName';
 
@@ -22,10 +27,15 @@ export default class ClassNameView extends PureComponent<PluginProps> {
     value: '',
   };
 
+  state = {
+    dataSource: [],
+    selectValue: [],
+  };
+
   getClassNameList = () => {
     const schema = project.exportSchema();
-    const css = schema.componentsTree[0].css;
-    const classNameList = [];
+    const { css } = schema.componentsTree[0];
+    const classNameList: string[] = [];
     if (css) {
       const re = /\.?\w+[^{]+\{[^}]*\}/g;
       const list = css.match(re);
@@ -47,9 +57,9 @@ export default class ClassNameView extends PureComponent<PluginProps> {
     return classNameList;
   };
 
-  handleChange = (value) => {
+  handleChange = (value?: string[]) => {
     const { onChange } = this.props;
-    onChange(value.join(' '));
+    onChange(value?.join(' '));
     this.setState({
       selectValue: value,
     });
@@ -59,7 +69,7 @@ export default class ClassNameView extends PureComponent<PluginProps> {
   componentWillMount() {
     const { value } = this.props;
     const classnameList = this.getClassNameList();
-    const dataSource = [];
+    const dataSource: IOption[] = [];
     classnameList.map((item) => {
       dataSource.push({
         value: item,
@@ -69,7 +79,7 @@ export default class ClassNameView extends PureComponent<PluginProps> {
       return item;
     });
 
-    let selectValue = [];
+    let selectValue: string[] = [];
     if (value && value !== '') {
       selectValue = value.split(' ');
     }
@@ -98,7 +108,7 @@ export default class ClassNameView extends PureComponent<PluginProps> {
         aria-label="tag mode"
         mode="tag"
         dataSource={dataSource}
-        onChange={this.handleChange}
+        onChange={(value) => this.handleChange(value as string[])}
         value={selectValue}
       />
     );
