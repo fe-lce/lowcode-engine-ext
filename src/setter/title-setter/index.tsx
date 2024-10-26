@@ -8,7 +8,7 @@ interface TitleSetterProps {
   field?: SettingTarget;
   prop?: SettingTarget;
   value: string;
-  defaultValue: string;
+  defaultValue?: string;
   defaultChecked?: boolean;
   onChange: Function;
 }
