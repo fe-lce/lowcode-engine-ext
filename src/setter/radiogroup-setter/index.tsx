@@ -6,7 +6,7 @@ interface RadioGroupSetterProps {
   value: boolean;
   disabled: boolean;
   options: any;
-  defaultValue: any;
+  defaultValue?: any;
   onChange: (val: number) => void;
 }
 interface RadioGroupSetterState {
@@ -58,7 +58,7 @@ export default class RadioGroupSetter extends React.PureComponent<
     return labelList || [];
   };
   render() {
-    const { onChange, disabled = false, options, value } = this.props;
+    const { onChange, disabled = false, options, value, defaultValue } = this.props;
     let hasImg = false;
     const dataSource = options.map((item: any) => {
       if (typeof item == 'string') {
@@ -84,7 +84,7 @@ export default class RadioGroupSetter extends React.PureComponent<
           size="small"
           dataSource={dataSource}
           shape="button"
-          value={value}
+          value={value ?? defaultValue}
           disabled={disabled}
           onChange={(val: any) => onChange(val)}
           {...otherProps}
