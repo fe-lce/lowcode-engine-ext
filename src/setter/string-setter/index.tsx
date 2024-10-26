@@ -4,7 +4,7 @@ import './index.less';
 
 interface StringSetterProps {
   value: string;
-  defaultValue: string;
+  defaultValue?: string;
   placeholder: string;
   onChange: (val: string) => void;
 }
@@ -13,11 +13,11 @@ export default class StringSetter extends React.PureComponent<StringSetterProps,
   static displayName = 'StringSetter';
 
   render() {
-    const { onChange, placeholder, value } = this.props;
+    const { onChange, placeholder, value, defaultValue } = this.props;
     return (
       <Input
         size="small"
-        value={value}
+        value={value ?? defaultValue}
         placeholder={placeholder || ''}
         onChange={(val: any) => onChange(val)}
         style={{ width: '100%' }}
