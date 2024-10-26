@@ -1,14 +1,38 @@
-import React, { Component } from 'react';
-import { Input, Search, Button, Icon } from '@alifd/next';
+import { Button, Icon, Input, Search } from '@alifd/next';
 import { project } from '@felce/lowcode-engine';
+import { IPublicTypeI18nMap } from '@felce/lowcode-types';
+import { Component } from 'react';
 import './index.less';
 import lang from './lang.json';
-class I18nSetter extends Component {
-  state = {
+
+interface II18nSetterProps {
+  field: any;
+  value: any;
+  onChange: any;
+  onSearch?: (value: string, filterValue: string) => void;
+}
+
+interface II18nSetterState {
+  isShowSearchPopUp: boolean;
+  isShowBindDataPopUp: boolean;
+  i18nValue: any;
+  i18nPageDataList?: any[];
+  i18nSearchDataList?: any[];
+  i18nSchema?: IPublicTypeI18nMap;
+}
+
+class I18nSetter extends Component<II18nSetterProps, II18nSetterState> {
+  state: II18nSetterState = {
     isShowSearchPopUp: false,
     isShowBindDataPopUp: false,
     i18nValue: {},
   };
+
+  constructor(props: II18nSetterProps) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+  }
 
   componentDidMount() {
     // 获取schema
@@ -23,7 +47,7 @@ class I18nSetter extends Component {
     }
     // 对原始的i18n数据结构进行转化，方便页面输出
     this.setState({
-      i18nPageDataList: i18nPageDataList,
+      i18nPageDataList,
       i18nValue,
       i18nSchema,
     });
@@ -65,6 +89,7 @@ class I18nSetter extends Component {
   };
 
   onSearch(value, filterValue) {
+    this.props.onSearch(value, filterValue);
     // console.log('onSearch', value, filterValue);
   }
 
@@ -96,7 +121,7 @@ class I18nSetter extends Component {
     onChange({});
   };
 
-  setI18nValue = (i18nkey, i18nPageDataList) => {
+  setI18nValue = (i18nkey, i18nPageDataList?: any[]) => {
     i18nPageDataList = i18nPageDataList || this.state.i18nPageDataList;
     let i18nDataList;
     i18nPageDataList.map((item) => {
@@ -121,10 +146,9 @@ class I18nSetter extends Component {
 
   createNewI18nItemData = () => {
     const { onChange } = this.props;
-    const { editor } = this.props.field;
     const schema = project.exportSchema();
-    let i18nSchema = schema.i18n;
-    let newI18nKey = this.uniqueId('i18n');
+    const i18nSchema = schema.i18n!;
+    const newI18nKey = this.uniqueId('i18n');
     // 将新的key添加到i18nSchema中
     for (let langKey in i18nSchema) {
       i18nSchema[langKey][newI18nKey] = '';
@@ -139,7 +163,7 @@ class I18nSetter extends Component {
     }
 
     const i18nPageDataList = this.transfromI18nData(i18nSchema);
-    let i18nValue = this.setI18nValue(newI18nKey, i18nPageDataList);
+    const i18nValue = this.setI18nValue(newI18nKey, i18nPageDataList);
 
     onChange(this.parseI18nValue2PropsValue(i18nValue));
 
@@ -293,9 +317,9 @@ class I18nSetter extends Component {
         {isShowSearchPopUp && (
           <div className="popup-container">
             <Search
-              onChange={this.onChange.bind(this)}
+              onChange={this.onChange}
               popupContent={this.renderI18nList()}
-              onSearch={this.onSearch.bind(this)}
+              onSearch={this.onSearch}
               type="normal"
               shape="simple"
               style={{ width: '195px' }}
