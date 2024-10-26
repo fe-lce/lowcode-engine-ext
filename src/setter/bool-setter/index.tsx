@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Switch } from '@alifd/next';
 
 import './index.less';
+
 interface BoolSetterProps {
   value: boolean;
   disabled: boolean;
@@ -15,11 +16,12 @@ export default class BoolSetter extends React.PureComponent<BoolSetterProps, Boo
   static displayName = 'BoolSetter';
 
   render() {
-    const { onChange, value } = this.props;
+    const { onChange, value, defaultValue, disabled } = this.props;
     return (
       <Switch
         className="switch-style"
-        checked={value}
+        checked={value ?? defaultValue}
+        disabled={disabled}
         size="small"
         onChange={(val: any) => onChange(val)}
       />
