@@ -5,7 +5,7 @@ import './index.less';
 interface TextAreaSetterProps {
   onChange: (value: string) => undefined;
   value: string;
-  defaultValue: string;
+  defaultValue?: string;
   placeholder: string;
 }
 interface TextAreaSetterState {
@@ -29,10 +29,10 @@ export default class TextAreaSetter extends PureComponent<
   };
 
   render() {
-    const { onChange, placeholder, value } = this.props;
+    const { onChange, placeholder, value, defaultValue } = this.props;
     return (
       <Input.TextArea
-        value={value || ''}
+        value={value || defaultValue || ''}
         onChange={(val) => onChange(val)}
         placeholder={placeholder}
         style={{ width: '100%' }}
