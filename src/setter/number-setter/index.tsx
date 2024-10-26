@@ -5,7 +5,7 @@ interface NumberSetterProps {
   value: number;
   min: number;
   max: number;
-  defaultValue: number;
+  defaultValue?: number;
   step: number | string;
   units: string;
   onChange: (val: number | null) => void;
@@ -31,6 +31,7 @@ export default class NumberSetter extends React.PureComponent<
       units = '',
       precision = 0,
       value,
+      defaultValue,
     } = this.props;
 
     return (
@@ -38,14 +39,14 @@ export default class NumberSetter extends React.PureComponent<
         size="small"
         style={{ width: '100%' }}
         className="lowcode-setter-number"
-        value={value}
+        value={value ?? defaultValue}
         min={min}
         max={max}
         precision={precision}
         step={step}
         innerAfter={units}
-        onChange={(val: number) => {
-          onChange(!val ? 0 : val);
+        onChange={(val) => {
+          onChange(!val ? 0 : (val as number));
         }}
       />
     );
