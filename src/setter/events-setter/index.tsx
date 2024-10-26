@@ -5,6 +5,24 @@ import nativeEvents from './native-events';
 
 import './index.less';
 
+enum DEFINITION_EVENT_TYPE {
+  EVENTS = 'events',
+  NATIVE_EVENTS = 'nativeEvents',
+  LIFE_CYCLE_EVENT = 'lifeCycleEvent',
+}
+export interface IEventSetterProps {
+  value?:
+    | {
+        eventDataList: any[];
+      }
+    | any[];
+  definition: Array<{
+    type: DEFINITION_EVENT_TYPE;
+    list: any[];
+  }>;
+  onChange: (eventList: any[]) => void;
+}
+
 const { Item, Group } = Menu;
 const RadioGroup = Radio.Group;
 const EVENT_CONTENTS = {
@@ -13,18 +31,9 @@ const EVENT_CONTENTS = {
   LIFE_CYCLE_EVENT: 'lifeCycleEvent',
 };
 
-const DEFINITION_EVENT_TYPE = {
-  EVENTS: 'events',
-  NATIVE_EVENTS: 'nativeEvents',
-  LIFE_CYCLE_EVENT: 'lifeCycleEvent',
-};
-
 const SETTER_NAME = 'event-setter';
 
-export default class EventsSetter extends Component<{
-  value: any[];
-  onChange: (eventList: any[]) => void;
-}> {
+export default class EventsSetter extends Component<IEventSetterProps> {
   state = {
     eventBtns: [],
     eventList: [],
@@ -33,33 +42,10 @@ export default class EventsSetter extends Component<{
     lifeCycleEventList: [],
     isRoot: false,
     eventDataList:
-      (this.props?.value?.eventDataList ? this.props.value.eventDataList : this.props?.value) || [],
+      (Array.isArray(this.props?.value) ? this.props.value : this.props.value?.eventDataList) || [],
   };
 
-  // constructor (){
-  //   super();
-  //   debugger;
-  //   // if (!this.props || !this.props.value){
-  //   //   this.setState({
-  //   //     eventDataList:[]
-  //   //   })
-  //   // }
-  // }
-
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   debugger;
-  //   // const { value } = nextProps;
-  //   // debugger;
-  //   // if (value !== prevState.eventDataList) {
-  //   //   return {
-  //   //     value,
-  //   //   };
-  //   // }
-  //   return null;
-  // }
-
   componentDidMount() {
-    // console.log(this.state.eventDataList);
     this.initEventBtns();
 
     this.initEventList();
@@ -75,15 +61,17 @@ export default class EventsSetter extends Component<{
     if (isRoot && !this.props.value) {
       const schema = project.exportSchema();
 
-      const lifeCycles = schema.componentsTree[0].lifeCycles;
+      const { lifeCycles } = schema.componentsTree[0];
       const eventDataList = [];
       if (lifeCycles) {
         for (const key in lifeCycles) {
-          eventDataList.push({
-            name: key,
-            relatedEventName: key,
-            type: EVENT_CONTENTS.LIFE_CYCLE_EVENT,
-          });
+          if (Object.prototype.hasOwnProperty.call(lifeCycles, key)) {
+            eventDataList.push({
+              name: key,
+              relatedEventName: key,
+              type: EVENT_CONTENTS.LIFE_CYCLE_EVENT,
+            });
+          }
         }
 
         this.setState({
@@ -200,7 +188,7 @@ export default class EventsSetter extends Component<{
     } else if (eventType === DEFINITION_EVENT_TYPE.NATIVE_EVENTS) {
       eventDataList.map((eventDataItem) => {
         eventList.map((item) => {
-          item.eventList.map((eventItem) => {
+          item.eventList.map((eventItem: any) => {
             if (eventItem.name === eventDataItem.name) {
               item.disabled = true;
             } else {
