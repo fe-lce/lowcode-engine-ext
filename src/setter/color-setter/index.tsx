@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Input, Balloon } from '@alifd/next';
 import { SketchPicker } from 'react-color';
 import './index.less';
+
 interface ColorSetterProps {
   value: string;
   onChange: (val: any) => void;
@@ -9,7 +10,7 @@ interface ColorSetterProps {
 }
 interface ColorSetterState {
   width: number;
-  setterValue: string;
+  setterValue: string | null;
 }
 export default class ColorSetter extends React.Component<ColorSetterProps, ColorSetterState> {
   static displayName = 'ColorSetter';
@@ -66,13 +67,17 @@ export default class ColorSetter extends React.Component<ColorSetterProps, Color
   render() {
     const { width, setterValue } = this.state;
     const { onChange } = this.props;
+
+    // 不接收null作为值
+    const value = setterValue || undefined;
+
     const InputTarget = (
       <Input
         size="small"
         className="lowcode-setter-color"
         style={{ width: '100%' }}
-        innerBefore={<div className="color-box" style={{ backgroundColor: setterValue }} />}
-        value={setterValue}
+        innerBefore={<div className="color-box" style={{ backgroundColor: value }} />}
+        value={(setterValue ?? '') as string}
         onChange={onChange}
       />
     );
@@ -86,7 +91,7 @@ export default class ColorSetter extends React.Component<ColorSetterProps, Color
         triggerType="click"
         closable={false}
       >
-        <SketchPicker color={setterValue} onChange={this.handleChange} />
+        <SketchPicker color={value} onChange={this.handleChange} />
       </Balloon>
     );
   }
