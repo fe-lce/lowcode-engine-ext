@@ -13,22 +13,24 @@ setter(设置器) 是用来展示每个物料的属性，[setter 使用说明手
 #### unpkg
 
 ```html
-https://unpkg.com/@felce/lowcode-engine-ext@1.1.0/dist/css/engine-ext.css
-https://unpkg.com/@felce/lowcode-engine-ext@1.1.0/dist/js/engine-ext.js
+https://unpkg.com/@felce/lowcode-engine-ext@1.1.1/dist/css/engine-ext.css
+https://unpkg.com/@felce/lowcode-engine-ext@1.1.1/dist/js/engine-ext.js
 ```
 
 #### npmmirror
 
+✨ 国内推荐使用 npm 镜像，速度更快
+
 ```html
-https://registry.npmmirror.com/@felce/lowcode-engine-ext@1.1.0/dist/css/engine-ext.css
-https://registry.npmmirror.com/@felce/lowcode-engine-ext@1.1.0/dist/js/engine-ext.js
+https://registry.npmmirror.com/@felce/lowcode-engine-ext/1.1.1/files/dist/css/engine-ext.css
+https://registry.npmmirror.com/@felce/lowcode-engine-ext/1.1.1/files/dist/js/engine-ext.js
 ```
 
 #### jsdelivr
 
 ```html
-https://cdn.jsdelivr.net/npm/@felce/lowcode-engine-ext@1.1.0/dist/css/engine-ext.css
-https://cdn.jsdelivr.net/npm/@felce/lowcode-engine-ext@1.1.0/dist/js/engine-ext.js
+https://cdn.jsdelivr.net/npm/@felce/lowcode-engine-ext@1.1.1/dist/css/engine-ext.css
+https://cdn.jsdelivr.net/npm/@felce/lowcode-engine-ext@1.1.1/dist/js/engine-ext.js
 ```
 
 #### 拓展变量绑定面板
