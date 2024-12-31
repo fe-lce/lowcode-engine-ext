@@ -35,7 +35,8 @@
       "@ali/lowcode-*": ["./*/src"],
       "@ali/visualengine": ["./vision-preset/src"]
     },
-    "outDir": "lib"
+    "types": ["vitest/globals", "vitest/jsdom"],
+    "outDir": "dist"
   },
   "exclude": ["**/test", "**/lib", "**/es", "node_modules"]
 }

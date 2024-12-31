@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { isJSExpression, isJSFunction, isJSSlot } from '@felce/lowcode-utils';
+import { IPublicModelPluginContext } from '@felce/lowcode-types';
 import { isPlainObject } from './utils';
 import { DatePicker, TimePicker } from '@alifd/next';
 import moment from 'moment';
@@ -239,6 +240,22 @@ console.log(
   'padding: 2px 1px; border-radius: 3px 0 0 3px; color: #fff; background: #5584ff; font-weight: bold;',
   'padding: 2px 1px; border-radius: 0 3px 3px 0; color: #fff; background: #42c02e; font-weight: bold;',
 );
-export default engineExt;
 
-// registerSetter(builtinSetters);
+// 注册默认的 setters
+export const setterRegistry = (ctx: IPublicModelPluginContext) => {
+  return {
+    async init() {
+      const { config } = ctx;
+      if (config.get('disableDefaultSetters')) return;
+      const extConfig = await import('@felce/lowcode-engine-ext');
+      const builtinSetters = extConfig.setters;
+      if (builtinSetters) {
+        ctx.setters.registerSetter(builtinSetters);
+      }
+    },
+  };
+};
+
+setterRegistry.pluginName = '___setter_registry___';
+
+export default engineExt;
