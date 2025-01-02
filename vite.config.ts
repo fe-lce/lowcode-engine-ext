@@ -36,16 +36,6 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           exports: 'named',
-          globals: {
-            react: 'React',
-            'react-dom': 'ReactDOM',
-            '@alifd/next': 'Next',
-            moment: 'moment',
-            lodash: '_',
-            'prop-types': 'PropTypes',
-            '@felce/lowcode-engine': 'AliLowcodeEngine',
-            '@felce/lowcode-engine-react': '___ReactSimulatorRenderer___',
-          },
         },
         external: [
           'react',
@@ -55,7 +45,11 @@ export default defineConfig(({ mode }) => {
           'lodash',
           '@alifd/next',
           '@felce/lowcode-engine',
-          '@felce/lowcode-engine-react',
+          '@felce/lowcode-editor-core',
+          '@felce/lowcode-editor-skeleton',
+          '@felce/lowcode-designer',
+          '@felce/lowcode-utils',
+          '@felce/lowcode-types',
         ],
       },
     },

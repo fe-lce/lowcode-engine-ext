@@ -1,31 +1,30 @@
-import React, { Component, ComponentClass } from 'react';
-import classNames from 'classnames';
 import { Dropdown, Menu } from '@alifd/next';
 import { common, setters, SettingField } from '@felce/lowcode-engine';
 import {
-  SetterConfig,
-  CustomView,
-  DynamicProps,
-  DynamicSetter,
-  TitleContent,
-  isSetterConfig,
-  isDynamicSetter,
+  IPublicTypeCustomView,
+  IPublicTypeDynamicProps,
+  IPublicTypeDynamicSetter,
+  IPublicTypeSetterConfig,
+  IPublicTypeTitleContent,
 } from '@felce/lowcode-types';
+import { isDynamicSetter, isSetterConfig } from '@felce/lowcode-utils';
+import classNames from 'classnames';
+import { Component, ComponentClass, ReactNode } from 'react';
+import { MixedSetterController } from './config';
 import { IconConvert } from './icons/convert';
 import { intlNode } from './locale';
-import { MixedSetterController } from './config';
 
-import './index.less';
 import { IconVariable } from './icons/variable';
+import './index.less';
 
 const { editorCabin } = common;
 const { computed, obx, Title, createSetterContent, observer, shallowIntl } = editorCabin;
 const { getSetter, getSettersMap } = setters;
 export interface SetterItem {
   name: string;
-  title: TitleContent;
-  setter: string | DynamicSetter | CustomView;
-  props?: object | DynamicProps;
+  title: IPublicTypeTitleContent;
+  setter: string | IPublicTypeDynamicSetter | IPublicTypeCustomView;
+  props?: object | IPublicTypeDynamicProps;
   condition?: (field: SettingField) => boolean;
   initialValue?: any | ((field: SettingField) => any);
   list: boolean;
@@ -62,7 +61,9 @@ function setMixedSelect(field, usedSetter) {
 }
 
 function nomalizeSetters(
-  setters?: Array<string | SetterConfig | CustomView | DynamicSetter>,
+  setters?: Array<
+    string | IPublicTypeSetterConfig | IPublicTypeCustomView | IPublicTypeDynamicSetter
+  >,
 ): SetterItem[] {
   if (!setters) {
     const normalized: SetterItem[] = [];
@@ -156,7 +157,9 @@ interface VariableSetter extends ComponentClass {
 @observer
 class MixedSetter extends Component<{
   field: SettingField;
-  setters?: Array<string | SetterConfig | CustomView | DynamicSetter>;
+  setters?: Array<
+    string | IPublicTypeSetterConfig | IPublicTypeCustomView | IPublicTypeDynamicSetter
+  >;
   onSetterChange?: (field: SettingField, name: string) => void;
   onChange?: (val: any) => void;
   value?: any;

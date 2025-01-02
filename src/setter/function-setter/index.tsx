@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Button, Icon, Dialog } from '@alifd/next';
-import MonacoEditor from '@alilc/lowcode-plugin-base-monaco-editor';
+import MonacoEditor from '@felce/lowcode-plugin-base-monaco-editor';
 import { event, skeleton } from '@felce/lowcode-engine';
 import { js_beautify } from 'js-beautify';
+import { isJSFunction } from '@felce/lowcode-utils';
 import './index.less';
 
 const SETTER_NAME = 'function-setter';
@@ -271,3 +272,14 @@ export default class FunctionSetter extends PureComponent<FunctionSetterProps> {
     );
   }
 }
+
+export const DataFunctionSetter = {
+  component: FunctionSetter,
+  title: '函数绑定',
+  condition: (field: any) => {
+    const v = field.getValue();
+    return isJSFunction(v);
+  },
+
+  valueType: ['JSFunction'],
+};

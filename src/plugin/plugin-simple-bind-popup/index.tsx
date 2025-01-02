@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Overlay } from '@alifd/next';
 import { PluginProps } from '@felce/lowcode-types';
 import { event } from '@felce/lowcode-engine';
-import MonacoEditor from '@alilc/lowcode-plugin-base-monaco-editor';
+import MonacoEditor from '@felce/lowcode-plugin-base-monaco-editor';
 import './index.less';
 
 const defaultEditorProps = {

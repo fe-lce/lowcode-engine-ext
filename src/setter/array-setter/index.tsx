@@ -131,8 +131,8 @@ export class ListSetter extends Component<ArraySetterProps, ArraySetterState> {
     const defaultValue = newValue
       ? newValue
       : typeof initialValue === 'function'
-      ? initialValue(field)
-      : initialValue;
+        ? initialValue(field)
+        : initialValue;
     values.push(defaultValue);
     this.scrollToLast = true;
     onChange?.(values);
@@ -335,3 +335,16 @@ export default class ArraySetter extends Component<{
     }
   }
 }
+
+export const DataArraySetter = {
+  component: ArraySetter,
+  defaultProps: {},
+  title: 'ArraySetter',
+  condition: (field: any) => {
+    const v = field.getValue();
+    return v == null || Array.isArray(v);
+  },
+  initialValue: [],
+  recommend: true,
+  valueType: ['array'],
+};

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
 import { Button, Icon, Dialog } from '@alifd/next';
-import MonacoEditor from '@alilc/lowcode-plugin-base-monaco-editor';
+import MonacoEditor from '@felce/lowcode-plugin-base-monaco-editor';
 import CustomIcon from '../../components/custom-icon';
 import { js_beautify } from 'js-beautify';
 import { intl } from './locale';
@@ -79,12 +79,12 @@ export default class JsonSetter extends PureComponent<JsonSetterProps> {
   renderButton = (value) => {
     return !value ? (
       <Button size="small" type="normal" onClick={this.openDialog}>
-        { intl('BindingData') }
+        {intl('BindingData')}
       </Button>
     ) : (
       <Button size="small" type="primary" onClick={this.openDialog}>
         <Icon type="edit" />
-        { intl('EditData') }
+        {intl('EditData')}
       </Button>
     );
   };
@@ -119,7 +119,7 @@ export default class JsonSetter extends PureComponent<JsonSetterProps> {
       <div>
         <Button size="small" type="primary" onClick={this.openDialog}>
           <CustomIcon type="icon-ic_edit" />
-          { intl('EditData') }
+          {intl('EditData')}
         </Button>
       </div>
     );
@@ -142,10 +142,10 @@ export default class JsonSetter extends PureComponent<JsonSetterProps> {
               this.closeDialog();
             }}
             cancelProps={{
-              children: intl('Cancel')
+              children: intl('Cancel'),
             }}
             okProps={{
-              children: intl('Confirm')
+              children: intl('Confirm'),
             }}
           >
             <div style={{ width: '500px', height: '400px' }}>
@@ -162,3 +162,8 @@ export default class JsonSetter extends PureComponent<JsonSetterProps> {
     );
   }
 }
+
+export const DataJsonSetter = {
+  component: JsonSetter,
+  valueType: ['object', 'array'],
+};

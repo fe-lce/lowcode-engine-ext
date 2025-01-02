@@ -11,6 +11,7 @@ import {
 } from '@felce/lowcode-types';
 import CustomIcon from '../../components/custom-icon';
 import './index.less';
+import { isPlainObject } from '@felce/lowcode-utils';
 
 const { editorCabin, skeletonCabin, designerCabin } = common;
 const { Title } = editorCabin;
@@ -250,3 +251,16 @@ class FormSetter extends Component<FormSetterProps> {
     );
   }
 }
+
+export const DataObjectSetter = {
+  component: ObjectSetter,
+  // todo: defaultProps
+  defaultProps: {},
+  title: 'ObjectSetter', // TODO
+  condition: (field: any) => {
+    const v = field.getValue();
+    return v == null || isPlainObject(v);
+  },
+  initialValue: {},
+  recommend: true,
+};

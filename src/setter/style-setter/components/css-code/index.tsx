@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from '@alifd/next';
 import { StyleData } from '../../utils/types';
 import { parseToCssCode, parseToStyleData } from '../../utils';
-import MonacoEditor from '@alilc/lowcode-plugin-base-monaco-editor';
+import MonacoEditor from '@felce/lowcode-plugin-base-monaco-editor';
 import Icon from '../../components/icon';
 import { intlLocal } from './locale';
 
@@ -120,12 +120,12 @@ export default class CssCode extends React.Component<CodeProps> {
         const height = lineCount * lineHeight + padding;
         if (this.prevHeight !== height) {
           this.prevHeight = height;
-          this.setState({height: `${height}px`})
+          this.setState({ height: `${height}px` });
           editor.layout();
         }
       };
       // 挂载时先适配高度
-      updateEditorHeight()
+      updateEditorHeight();
     };
 
     return (

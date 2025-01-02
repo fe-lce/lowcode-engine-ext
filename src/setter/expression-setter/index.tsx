@@ -25,7 +25,7 @@ const helpMap = {
   field: '表单Field对象',
 };
 
-export default class ExpressionView extends PureComponent {
+export default class ExpressionSetter extends PureComponent {
   static displayName = 'Expression';
 
   static propTypes = {
@@ -75,13 +75,13 @@ export default class ExpressionView extends PureComponent {
     this.expression = React.createRef();
     this.i18n = generateI18n(props.locale, props.messages);
     this.state = {
-      value: ExpressionView.getInitValue(props.value),
+      value: ExpressionSetter.getInitValue(props.value),
       dataSource: props.dataSource || [],
     };
   }
 
   // static getDerivedStateFromProps(props: { value: any }, state: { preValue: any }) {
-  //   const curValue = ExpressionView.getInitValue(props.value);
+  //   const curValue = ExpressionSetter.getInitValue(props.value);
   //   if (curValue !== state.preValue) {
   //     return {
   //       preValue: curValue,
@@ -359,3 +359,15 @@ export default class ExpressionView extends PureComponent {
     this.forceUpdate();
   }
 }
+
+export const DataExpressionSetter = {
+  component: ExpressionSetter,
+  condition: (field: any) => {
+    const v = field.getValue();
+    return isJSExpression(v);
+  },
+  valueType: ['JSExpression'],
+  defaultProps: { placeholder: '请输入表达式' },
+  title: '表达式输入',
+  recommend: true,
+};

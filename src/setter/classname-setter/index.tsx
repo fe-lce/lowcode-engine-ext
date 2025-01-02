@@ -1,12 +1,13 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { Select } from '@alifd/next';
-import { project } from '@felce/lowcode-engine';
+import { IPublicEnumTransformStage, IPublicModelSettingField } from '@felce/lowcode-types';
+import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 import './index.less';
 
 export interface PluginProps {
   value: string;
   onChange: any;
+  field: IPublicModelSettingField;
 }
 
 interface IOption {
@@ -33,7 +34,15 @@ export default class ClassNameView extends PureComponent<PluginProps> {
   };
 
   getClassNameList = () => {
-    const schema = project.exportSchema();
+    const schema = this.props.field.node?.document?.project?.exportSchema(
+      IPublicEnumTransformStage.Save,
+    );
+    if (!schema) {
+      return [];
+    }
+    if (schema.componentsTree.length === 0) {
+      return [];
+    }
     const { css } = schema.componentsTree[0];
     const classNameList: string[] = [];
     if (css) {
