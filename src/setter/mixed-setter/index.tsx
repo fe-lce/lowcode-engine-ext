@@ -1,9 +1,11 @@
 import { Dropdown, Menu } from '@alifd/next';
 import { common, setters, SettingField } from '@felce/lowcode-engine';
 import {
+  IPublicModelSettingField,
   IPublicTypeCustomView,
   IPublicTypeDynamicProps,
   IPublicTypeDynamicSetter,
+  IPublicTypeRegisteredSetter,
   IPublicTypeSetterConfig,
   IPublicTypeTitleContent,
 } from '@felce/lowcode-types';
@@ -25,15 +27,19 @@ export interface SetterItem {
   title: IPublicTypeTitleContent;
   setter: string | IPublicTypeDynamicSetter | IPublicTypeCustomView;
   props?: object | IPublicTypeDynamicProps;
-  condition?: (field: SettingField) => boolean;
+  condition?: IPublicTypeRegisteredSetter['condition'];
   initialValue?: any | ((field: SettingField) => any);
   list: boolean;
-  valueType: string[];
+  valueType: IPublicTypeRegisteredSetter['valueType'];
 }
 
 const dash = '_';
-function getMixedSelect(field) {
+function getMixedSelect(field: IPublicModelSettingField) {
   const path = field.path || [];
+  if (!field.node) {
+    console.warn('field.node is undefined');
+    return undefined;
+  }
   if (path.length) {
     const key = `_unsafe_MixedSetter${dash}${path[path.length - 1]}${dash}select`;
     const newPath = [...path];
@@ -51,8 +57,12 @@ function getMixedSelect(field) {
   }
   return undefined;
 }
-function setMixedSelect(field, usedSetter) {
+function setMixedSelect(field: IPublicModelSettingField, usedSetter: string) {
   const path = field.path || [];
+  if (!field.node) {
+    console.warn('field.node is undefined');
+    return;
+  }
   if (path.length) {
     const key = `_unsafe_MixedSetter${dash}${path[path.length - 1]}${dash}select`;
     path.splice(path.length - 1, 1, key);
@@ -67,7 +77,7 @@ function nomalizeSetters(
 ): SetterItem[] {
   if (!setters) {
     const normalized: SetterItem[] = [];
-    getSettersMap().forEach((setter, name) => {
+    getSettersMap().forEach((setter: IPublicTypeRegisteredSetter, name: string) => {
       if (name === 'MixedSetter') {
         return;
       }
@@ -255,14 +265,14 @@ class MixedSetter extends Component<{
     }
   };
 
-  private syncSelectSetter(name) {
+  private syncSelectSetter(name: string) {
     // TODO: sync into engine ext.props
     const { field } = this.props;
     this.used = name;
     setMixedSelect(field, name);
   }
 
-  private handleInitial({ initialValue }: SetterItem, fieldValue: string) {
+  private handleInitial({ initialValue }: SetterItem, fieldValue?: string) {
     const { field, onChange } = this.props;
     let newValue: any = initialValue;
     if (newValue && typeof newValue === 'function') {
