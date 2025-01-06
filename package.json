@@ -1,18 +1,27 @@
 {
   "name": "@felce/lowcode-engine-ext",
-  "version": "1.2.0-beta.1",
+  "version": "1.2.0-beta.2",
   "description": "低代码官方提供的扩展集 - Official extension set provided by lowcode-engine",
   "files": [
     "dist"
   ],
-  "main": "dist/index.es.js",
-  "module": "dist/index.umd.js",
-  "stylePath": "style.js",
+  "main": "dist/engine-ext.es.js",
+  "module": "dist/engine-ext.umd.js",
+  "types": "dist/engine-ext.d.ts",
+  "style": "dist/engine-ext.css",
+  "exports": {
+    ".": {
+      "import": "./dist/engine-ext.es.js",
+      "require": "./dist/engine-ext.umd.js",
+      "default": "./dist/engine-ext.umd.js"
+    },
+    "./style.css": "./dist/engine-ext.css"
+  },
   "scripts": {
     "start": "vite",
     "build": "vite build",
     "test": "vitest",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm run build",
     "eslint": "eslint --cache --ext .js,.jsx ./",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"**/*.{css,scss,less}\"",
