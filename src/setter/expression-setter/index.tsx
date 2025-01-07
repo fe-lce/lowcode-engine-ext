@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Select, Balloon } from '@alifd/next';
 import { project } from '@felce/lowcode-engine';
-import * as acorn from 'acorn';
+// import * as acorn from 'acorn';
 
 import { generateI18n } from './locale/utils';
 import zhCN from './locale/zh-CN';
@@ -150,24 +150,25 @@ export default class ExpressionSetter extends PureComponent {
   }
 
   /**
+   * TODO 没见用过，后面再修复
    * 获取光标前的对象字符串，语法解析获取对象字符串
    * @param  {String} str 模板字符串
    * @return {String}     光标前的对象字符串
    */
-  getCurrentFiled(str: string | any[]) {
-    str += 'x'; // .后面加一个x字符，便于acorn解析
-    try {
-      const astTree = acorn.parse(str);
-      const right = astTree.body[0].expression.right || astTree.body[0].expression;
-      if (right.type === 'MemberExpression') {
-        const { start, end } = right;
-        str = str.slice(start, end);
-        return { str, start, end };
-      }
-    } catch (e) {
-      return null;
-    }
-  }
+  // getCurrentFiled(str: string | any[]) {
+  //   str += 'x'; // .后面加一个x字符，便于acorn解析
+  //   try {
+  //     const astTree = acorn.parse(str, {ecmaVersion : 6});
+  //     const right = astTree.body[0].expression.right || astTree.body[0].expression;
+  //     if (right.type === 'MemberExpression') {
+  //       const { start, end } = right;
+  //       str = str.slice(start, end);
+  //       return { str, start, end };
+  //     }
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
 
   /**
    * 获取输入的上下文信息
