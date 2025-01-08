@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => {
           '@felce/lowcode-designer',
           '@felce/lowcode-utils',
           '@felce/lowcode-types',
+          '@felce/lowcode-plugin-base-monaco-editor',
         ],
       },
     },
