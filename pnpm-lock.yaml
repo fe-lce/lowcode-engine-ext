@@ -2,13 +2,15 @@ lockfileVersion: 5.4
 
 specifiers:
   '@alifd/next': ^1.27.30
-  '@alilc/lowcode-plugin-base-monaco-editor': ^1.1.2
-  '@felce/lowcode-editor-skeleton': ^1.5.0-beta.2
-  '@felce/lowcode-engine': ^1.5.0-beta.2
-  '@felce/lowcode-types': ^1.5.0-beta.2
-  '@felce/lowcode-utils': ^1.5.0-beta.2
+  '@felce/lowcode-designer': latest
+  '@felce/lowcode-editor-skeleton': latest
+  '@felce/lowcode-engine': latest
+  '@felce/lowcode-plugin-base-monaco-editor': latest
+  '@felce/lowcode-types': latest
+  '@felce/lowcode-utils': latest
   '@testing-library/dom': ^10.4.0
   '@testing-library/react': ^16.1.0
+  '@types/js-beautify': ^1.14.3
   '@types/react': ^18.3.12
   '@types/react-color': ^3.0.12
   '@types/react-dom': ^18.3.1
@@ -26,15 +28,17 @@ specifiers:
   sass-embedded: ^1.83.0
   vite: ^6.0.3
   vite-plugin-dts: ^4.3.0
+  vite-plugin-external: ^4.3.1
   vitest: ^2.1.8
 
 dependencies:
   '@alifd/next': 1.27.30_rvlneaam22f6syrfxovdh6jas4
-  '@alilc/lowcode-plugin-base-monaco-editor': 1.1.2_monaco-editor@0.52.2
-  '@felce/lowcode-editor-skeleton': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-  '@felce/lowcode-engine': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-  '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-  '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+  '@felce/lowcode-designer': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+  '@felce/lowcode-editor-skeleton': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+  '@felce/lowcode-engine': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+  '@felce/lowcode-plugin-base-monaco-editor': 1.3.0-beta.3
+  '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+  '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
   classnames: 2.5.1
   cssjson: 2.1.3
   js-beautify: 1.15.1
@@ -45,6 +49,7 @@ dependencies:
 devDependencies:
   '@testing-library/dom': 10.4.0
   '@testing-library/react': 16.1.0_z6octng6bfe6dlaosvrb7yeilu
+  '@types/js-beautify': 1.14.3
   '@types/react': 18.3.17
   '@types/react-color': 3.0.13_@types+react@18.3.17
   '@types/react-dom': 18.3.5_@types+react@18.3.17
@@ -56,6 +61,7 @@ devDependencies:
   sass-embedded: 1.83.0
   vite: 6.0.3_ahjh2i6fbktk2q4a5frfh4rxa4
   vite-plugin-dts: 4.3.0_76h7ayhxucz4r6hiysvdf3qf4a
+  vite-plugin-external: 4.3.1
   vitest: 2.1.8_ur5au2lahz2oftporakumkt27q
 
 packages:
@@ -179,15 +185,6 @@ packages:
     resolution: {integrity: sha512-wHumEFSsg3LMt2ZsmBdGB/KTelbzO+Nul7odYSBUjyMKD/UYw0DN8yrQNpS0qeGgy6Bw2Hii6583P23ERDvLqQ==}
     dependencies:
       tslib: 2.8.1
-    dev: false
-
-  /@alilc/lowcode-plugin-base-monaco-editor/1.1.2_monaco-editor@0.52.2:
-    resolution: {integrity: sha512-ZEq08Zj4gLQgFzoU3T6xQITv6nyF/KlUJ1cVZ4RzdgYho4iQqUyoOUY0g+YIGc8Lre9yIVwnfLv2gSf2K61TCw==}
-    dependencies:
-      '@monaco-editor/loader': 1.3.0_monaco-editor@0.52.2
-      classnames: 2.5.1
-    transitivePeerDependencies:
-      - monaco-editor
     dev: false
 
   /@babel/code-frame/7.26.2:
@@ -675,12 +672,12 @@ packages:
     dev: true
     optional: true
 
-  /@felce/lowcode-designer/1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq:
-    resolution: {integrity: sha512-iH4cCbD/3eqAHejmSBMpwbcOAV4z6uEgcMrqlIW6E/Qvi6h0YuvDwzh+vXH3euOpYl3no3sRqUEu6OZ1o/RYGA==}
+  /@felce/lowcode-designer/1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq:
+    resolution: {integrity: sha512-HPCN01geeSBigdIxf/F+njdRro1EQoYQgbGdha2xDhad5x5TPsGqiFytbS4bVKCYEBYSIgvdoWHmgc73MViz1g==}
     dependencies:
-      '@felce/lowcode-editor-core': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-editor-core': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
       classnames: 2.5.1
       react: 18.3.1
       react-dom: 18.3.1_react@18.3.1
@@ -695,12 +692,12 @@ packages:
       - supports-color
     dev: false
 
-  /@felce/lowcode-editor-core/1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq:
-    resolution: {integrity: sha512-P0uRCp3K3s73J+tQ6JCyAKKvXXexUBZYyYkWjbhAdM4Co5KYRwc5uUwLXSgpZr/Ve5+Tr0HOCH42cl1f4K81wQ==}
+  /@felce/lowcode-editor-core/1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq:
+    resolution: {integrity: sha512-3nC6iSaO+anRB+ZOBGNK3tK8VsnVUbK2/NEPbCe7AAGBizElZPT65+s9pzRnuNOovYf5yFoYGZhmpqGgkNZh9g==}
     dependencies:
       '@alifd/next': 1.27.30_rvlneaam22f6syrfxovdh6jas4
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
       classnames: 2.5.1
       debug: 4.4.0
       intl-messageformat: 10.7.10
@@ -720,15 +717,15 @@ packages:
       - supports-color
     dev: false
 
-  /@felce/lowcode-editor-skeleton/1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq:
-    resolution: {integrity: sha512-/K6kikSbBoZhUW7++9f3+UI+bo8aADhiRCyFNNWmUQHVth8kkfvqdtJH0ArYrSnWP9tP29tNOwKp9W1llcHWow==}
+  /@felce/lowcode-editor-skeleton/1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq:
+    resolution: {integrity: sha512-m0auvpI+ONO5KJXGvH8d45NpPFiNbY6tzOiP2DxT1aJcs6mb00TfUkrwrgqL68BIIDxj1VlzPCoG5IgY65vlJA==}
     dependencies:
       '@alifd/next': 1.27.30_rvlneaam22f6syrfxovdh6jas4
-      '@felce/lowcode-designer': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-core': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-shell': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-designer': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-core': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-shell': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
       classnames: 2.5.1
       react: 18.3.1
       react-dom: 18.3.1_react@18.3.1
@@ -741,19 +738,20 @@ packages:
       - supports-color
     dev: false
 
-  /@felce/lowcode-engine/1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq:
-    resolution: {integrity: sha512-SKrdaccOyWZXO8Oh6BiielRGSazDTwIe8LMziiJANudkvo2gk7KmR7iAohSh5npjrnOjaaKAGwzukFgxOeOnhQ==}
+  /@felce/lowcode-engine/1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq:
+    resolution: {integrity: sha512-9Z5Sou1kIyQfB2wlac51HooYuS6JcTLQP1tELg364iZ29/Ee84eE69HjcrD4E6Fb3sibuw2W0n8JevD2Ke/AAg==}
     dependencies:
       '@alifd/next': 1.27.30_rvlneaam22f6syrfxovdh6jas4
-      '@felce/lowcode-designer': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-core': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-skeleton': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-plugin-command': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-plugin-designer': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-plugin-outline-pane': 1.5.0-beta.2_lu4jqaj53isxombhbp2abouhtq
-      '@felce/lowcode-shell': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-workspace': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-designer': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-core': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-skeleton': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-plugin-command': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-plugin-designer': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-plugin-outline-pane': 1.5.0-beta.5_lu4jqaj53isxombhbp2abouhtq
+      '@felce/lowcode-shell': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-workspace': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1_react@18.3.1
@@ -766,11 +764,22 @@ packages:
       - supports-color
     dev: false
 
-  /@felce/lowcode-plugin-command/1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma:
-    resolution: {integrity: sha512-3FeE2JgcKCZfrqYDb2pFzJrWWNTqbUaaXHWt3CGvCI9IgmkrYhMNulavM3nHRGAcw9Ex7UGnnUvcqiYu8RSzRw==}
+  /@felce/lowcode-plugin-base-monaco-editor/1.3.0-beta.3:
+    resolution: {integrity: sha512-/K10xU4zARXUDl6ixYNCoYWrMKEVpYikdDcNJynAtaKH450NuwY5PljGvqBat9pQVVFtCjdciXOcGq4KaAbsVw==}
     dependencies:
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@monaco-editor/loader': 1.3.0_monaco-editor@0.31.1
+      classnames: 2.5.1
+      lodash: 4.17.21
+      monaco-editor: 0.31.1
+      react: 18.3.1
+      react-dom: 18.3.1_react@18.3.1
+    dev: false
+
+  /@felce/lowcode-plugin-command/1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma:
+    resolution: {integrity: sha512-mkHjT6Dd/2jm0t34bwZBwF9ELViLIbDdNmejiNIEeqMCq13uvtw3T/jD0/ljprNPtZrz7pcEYq69pxeQy9h9OA==}
+    dependencies:
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
     transitivePeerDependencies:
       - '@alifd/meet-react'
       - '@types/react'
@@ -778,12 +787,12 @@ packages:
       - react-dom
     dev: false
 
-  /@felce/lowcode-plugin-designer/1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq:
-    resolution: {integrity: sha512-37cMY14iOg1vS2ZW2FSF9SXKnWp23nE+t8xY4qoeTbwylDy7FxI+zImg4XCj3QTsNUJZrZ4I9Vkd4PE+Ac9iQg==}
+  /@felce/lowcode-plugin-designer/1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq:
+    resolution: {integrity: sha512-/mKphlSjLnxJ/oSeqrDoPAIqZibhxM5rI70rH3PKVRRmr7JicYsFY8rzZqBV087G51Ybo4RZbB0l6j38s/wlTQ==}
     dependencies:
-      '@felce/lowcode-designer': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-core': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-designer': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-core': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
       react: 18.3.1
       react-dom: 18.3.1_react@18.3.1
     transitivePeerDependencies:
@@ -795,12 +804,12 @@ packages:
       - supports-color
     dev: false
 
-  /@felce/lowcode-plugin-outline-pane/1.5.0-beta.2_lu4jqaj53isxombhbp2abouhtq:
-    resolution: {integrity: sha512-4T3K99TMwBQplPXl76YOht/qgFZlP7P+xCELr+0ibQxuG7VoSqprz/5Gc4CFzY1YHp9bQmtxpYid/K4RLvyb6g==}
+  /@felce/lowcode-plugin-outline-pane/1.5.0-beta.5_lu4jqaj53isxombhbp2abouhtq:
+    resolution: {integrity: sha512-yo0WpkqcHT4Qrdd0RkRofk/ia8gejqaJroxJmgLqene0jl25wqc4qBApeQy+4/CXKQDhLG4Y4SF/72VdAicG8w==}
     dependencies:
       '@alifd/next': 1.27.30_rvlneaam22f6syrfxovdh6jas4
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
       classnames: 2.5.1
       react: 18.3.1
       react-dom: 18.3.1_react@18.3.1
@@ -811,16 +820,16 @@ packages:
       - moment
     dev: false
 
-  /@felce/lowcode-shell/1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq:
-    resolution: {integrity: sha512-384/9No3/X4+Y500MhJ3oJCPcwldbkvFCztHq1sVPUtLyHbVC4xZKMhoWeyWhRggfDnKUD3bOkfZ0k2obY3DFQ==}
+  /@felce/lowcode-shell/1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq:
+    resolution: {integrity: sha512-iD7JjgboJzFHegdUb+nv8m1PO6TThMBH4KFV9Mtm8HfgHpJ1xr4MW3vUhzFjVTZDqH9pVa1UrpGfPw73jaapHw==}
     dependencies:
       '@alifd/next': 1.27.30_rvlneaam22f6syrfxovdh6jas4
-      '@felce/lowcode-designer': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-core': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-skeleton': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-workspace': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-designer': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-core': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-skeleton': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-workspace': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
       classnames: 2.5.1
       react: 18.3.1
       react-dom: 18.3.1_react@18.3.1
@@ -833,8 +842,8 @@ packages:
       - supports-color
     dev: false
 
-  /@felce/lowcode-types/1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma:
-    resolution: {integrity: sha512-8FLW3l8OzjkwLBvVcu+jp0gNlxXDpa7aSOgJLokWE4Qtv2moA4F2ywwOboSvsv0qdiW+pHQxjRZEuI7bYPj7RA==}
+  /@felce/lowcode-types/1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma:
+    resolution: {integrity: sha512-m5wfv7Qj2PM6sor8xyS9/jA7xBGS5dSEgfl+iAMzzF/c1Nf8++eiGmCVSaBCvPKI5/zN2qN1//GQt4pNtdC9bw==}
     dependencies:
       '@alifd/next': 1.27.30_rvlneaam22f6syrfxovdh6jas4
       '@alilc/lowcode-datasource-types': 1.2.1
@@ -847,10 +856,10 @@ packages:
       - react-dom
     dev: false
 
-  /@felce/lowcode-utils/1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma:
-    resolution: {integrity: sha512-Bwwibql7jVcZfgY9WqmsfOCAjF+quipJJv6y9FchSMl2eJKjthl7LWcvz5og6TNSigq1NW+gEjW5o7grPSGJdw==}
+  /@felce/lowcode-utils/1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma:
+    resolution: {integrity: sha512-CWJj3lvkEiA1dl03V5x0WIFkxVmnWilqqA0DFtxJ7zoQQVtxl9AgsSIomdNcwRUisOMIU//4M17AGd9HMqe4vw==}
     dependencies:
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
       classnames: 2.5.1
       events: 3.3.0
       mobx: 6.13.5
@@ -862,14 +871,15 @@ packages:
       - react-dom
     dev: false
 
-  /@felce/lowcode-workspace/1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq:
-    resolution: {integrity: sha512-Sp/UUdlwhKponIbJ5zq7MFItjIXG8RDOCW0DeT37GJnXsS2kBWCRAvWqoYcHvyRKSt1eIAz62gLEcMNiNjtSTQ==}
+  /@felce/lowcode-workspace/1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq:
+    resolution: {integrity: sha512-vkfvmoV5YeEOtUsliEp4Hqk4AtMpP4BYLof5oMQD3zWqSq89EoPc6G7GO5fpNJNy8GKE5Eyk3SFKflvUEjSjig==}
     dependencies:
-      '@felce/lowcode-designer': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-core': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-editor-skeleton': 1.5.0-beta.2_64yjvzlpbene4wzl4xfovwroyq
-      '@felce/lowcode-types': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
-      '@felce/lowcode-utils': 1.5.0-beta.2_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-designer': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-core': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-editor-skeleton': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-shell': 1.5.0-beta.5_64yjvzlpbene4wzl4xfovwroyq
+      '@felce/lowcode-types': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
+      '@felce/lowcode-utils': 1.5.0-beta.5_7o2pmx6ksh4v5gcwlfmkm4lfma
       classnames: 2.5.1
       react: 18.3.1
       react-dom: 18.3.1_react@18.3.1
@@ -1002,12 +1012,12 @@ packages:
     resolution: {integrity: sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==}
     dev: true
 
-  /@monaco-editor/loader/1.3.0_monaco-editor@0.52.2:
+  /@monaco-editor/loader/1.3.0_monaco-editor@0.31.1:
     resolution: {integrity: sha512-N3mGq1ktC3zh7WUx3NGO+PSDdNq9Vspk/41rEmRdrCqV9vNbBTRzAOplmUpNQsi+hmTs++ERMBobMERb8Kb+3g==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
-      monaco-editor: 0.52.2
+      monaco-editor: 0.31.1
       state-local: 1.0.7
     dev: false
 
@@ -1473,6 +1483,27 @@ packages:
 
   /@types/estree/1.0.6:
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
+    dev: true
+
+  /@types/fs-extra/11.0.4:
+    resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
+    dependencies:
+      '@types/jsonfile': 6.1.4
+      '@types/node': 14.18.63
+    dev: true
+
+  /@types/js-beautify/1.14.3:
+    resolution: {integrity: sha512-FMbQHz+qd9DoGvgLHxeqqVPaNRffpIu5ZjozwV8hf9JAGpIOzuAf4wGbRSo8LNITHqGjmmVjaMggTT5P4v4IHg==}
+    dev: true
+
+  /@types/jsonfile/6.1.4:
+    resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
+    dependencies:
+      '@types/node': 14.18.63
+    dev: true
+
+  /@types/node/14.18.63:
+    resolution: {integrity: sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==}
     dev: true
 
   /@types/prop-types/15.7.14:
@@ -2321,6 +2352,15 @@ packages:
       mime-types: 2.1.35
     dev: true
 
+  /fs-extra/11.2.0:
+    resolution: {integrity: sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==}
+    engines: {node: '>=14.14'}
+    dependencies:
+      graceful-fs: 4.2.11
+      jsonfile: 6.1.0
+      universalify: 2.0.1
+    dev: true
+
   /fs-extra/7.0.1:
     resolution: {integrity: sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==}
     engines: {node: '>=6 <7 || >=8'}
@@ -2641,6 +2681,14 @@ packages:
       graceful-fs: 4.2.11
     dev: true
 
+  /jsonfile/6.1.0:
+    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
+    dependencies:
+      universalify: 2.0.1
+    optionalDependencies:
+      graceful-fs: 4.2.11
+    dev: true
+
   /kolorist/1.8.0:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
     dev: true
@@ -2873,8 +2921,8 @@ packages:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
     dev: false
 
-  /monaco-editor/0.52.2:
-    resolution: {integrity: sha512-GEQWEZmfkOGLdd3XK8ryrfWz3AIP8YymVXiPHEdewrUq7mh0qrKrfHLNCXcbB6sTnMLnOZ3ztSiKcciFUkIJwQ==}
+  /monaco-editor/0.31.1:
+    resolution: {integrity: sha512-FYPwxGZAeP6mRRyrr5XTGHD9gRXVjy7GUzF4IPChnyt3fS5WrNxIkS8DNujWf6EQy0Zlzpxw8oTVE+mWI2/D1Q==}
     dev: false
 
   /mrmime/2.0.0:
@@ -3977,6 +4025,11 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
+  /universalify/2.0.1:
+    resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
+    engines: {node: '>= 10.0.0'}
+    dev: true
+
   /uri-js/4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
@@ -4042,6 +4095,15 @@ packages:
       - '@types/node'
       - rollup
       - supports-color
+    dev: true
+
+  /vite-plugin-external/4.3.1:
+    resolution: {integrity: sha512-aoukfac66QevFAbRF2ZD81WPSqeqhgEfbfhPYQP9RPWO1en+Lw4HyhWRdvSjYn56gcKUJCtHdFG2jEpYgleLng==}
+    engines: {node: '>=14.18.0', vite: '>=3.1.0'}
+    dependencies:
+      '@types/fs-extra': 11.0.4
+      '@types/node': 14.18.63
+      fs-extra: 11.2.0
     dev: true
 
   /vite/5.4.11_ahjh2i6fbktk2q4a5frfh4rxa4:
