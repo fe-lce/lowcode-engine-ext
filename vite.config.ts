@@ -2,10 +2,18 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import dts from 'vite-plugin-dts';
+import external from 'vite-plugin-external';
 
 export default defineConfig(({ mode }) => {
   return {
     plugins: [
+      external({
+        development: {
+          externals: {
+            react: 'window.React',
+          },
+        },
+      }),
       react({
         tsDecorators: true,
       }),
@@ -27,6 +35,7 @@ export default defineConfig(({ mode }) => {
       port: 4008,
     },
     build: {
+      cssCodeSplit: true,
       lib: {
         entry: './src/index.ts',
         fileName: (format: string) => `engine-ext.${format}.js`,
@@ -36,10 +45,17 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           exports: 'named',
+          globals: {
+            react: 'React',
+            '@alifd/next': 'Next',
+            '@felce/lowcode-engine': 'AliLowCodeEngine',
+            lodash: '_',
+            moment: 'moment',
+            'prop-types': 'PropTypes',
+          },
         },
         external: [
           'react',
-          'react-dom',
           'prop-types',
           'moment',
           'lodash',
