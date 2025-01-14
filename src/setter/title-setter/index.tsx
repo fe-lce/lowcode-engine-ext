@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Switch, Input, Box } from '@alifd/next';
-import { SettingTarget } from '@felce/lowcode-types';
+import { IPublicModelSettingField } from '@felce/lowcode-types';
 
 import './index.scss';
 
 interface TitleSetterProps {
-  field?: SettingTarget;
+  field?: IPublicModelSettingField;
   prop?: SettingTarget;
   value: string;
   defaultValue?: string;
