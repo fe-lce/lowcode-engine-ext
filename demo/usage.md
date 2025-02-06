@@ -20,5 +20,7 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, mountNode);
+const root = createRoot(document.getElementById('lce-container')!);
+
+root.render(<App />);
 ```
