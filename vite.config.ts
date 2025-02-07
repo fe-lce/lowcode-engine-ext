@@ -35,7 +35,6 @@ export default defineConfig(({ mode }) => {
       port: 4008,
     },
     build: {
-      cssCodeSplit: true,
       lib: {
         entry: './src/index.ts',
         fileName: (format: string) => `engine-ext.${format}.js`,
