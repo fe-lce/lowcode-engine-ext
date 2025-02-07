@@ -1,13 +1,13 @@
 {
   "name": "@felce/lowcode-engine-ext",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "低代码官方提供的扩展集 - Official extension set provided by lowcode-engine",
   "files": [
     "dist"
   ],
   "main": "dist/engine-ext.umd.js",
   "module": "dist/engine-ext.es.js",
-  "types": "dist/engine-ext.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "vite",
     "build": "vite build",
