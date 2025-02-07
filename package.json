@@ -1,6 +1,6 @@
 {
   "name": "@felce/lowcode-engine-ext",
-  "version": "1.2.0-beta.6",
+  "version": "1.2.0",
   "description": "低代码官方提供的扩展集 - Official extension set provided by lowcode-engine",
   "files": [
     "dist"
