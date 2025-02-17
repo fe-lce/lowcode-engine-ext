@@ -17,6 +17,7 @@
     "esModuleInterop": true,
     // Specify JSX code generation: 'preserve', 'react-native', or 'react'.
     "jsx": "preserve",
+    "jsxImportSource": "react",
     // Import emit helpers (e.g. __extends, __rest, etc..) from tslib
     "importHelpers": true,
     // Enables experimental support for ES7 decorators.
@@ -30,12 +31,8 @@
     "resolveJsonModule": true,
     // skip type checking of declaration files
     "skipLibCheck": true,
-    "baseUrl": "./packages",
-    "paths": {
-      "@ali/lowcode-*": ["./*/src"],
-      "@ali/visualengine": ["./vision-preset/src"]
-    },
-    "outDir": "lib"
+    "types": ["vitest/globals", "vitest/jsdom"],
+    "outDir": "dist"
   },
   "exclude": ["**/test", "**/lib", "**/es", "node_modules"]
 }

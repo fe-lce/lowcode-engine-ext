@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Button, Input, Icon, Switch, Select } from '@alifd/next';
 import './index.less';
+import { isJSSlot } from '@felce/lowcode-utils';
 
 interface Template {
   // 模板标签
@@ -179,3 +180,26 @@ export default class SlotSetter extends Component<{
     );
   }
 }
+
+export const DataSlotSetter = {
+  component: SlotSetter,
+  title: {
+    type: 'i18n',
+    'zh-CN': '插槽输入',
+    'en-US': 'Slot Setter',
+  },
+  condition: (field: any) => {
+    return isJSSlot(field.getValue());
+  },
+  initialValue: (field: any, value: any) => {
+    if (isJSSlot(value)) {
+      return value;
+    }
+    return {
+      type: 'JSSlot',
+      value,
+    };
+  },
+  recommend: true,
+  valueType: ['JSSlot'],
+};

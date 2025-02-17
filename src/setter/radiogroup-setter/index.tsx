@@ -58,7 +58,7 @@ export default class RadioGroupSetter extends React.PureComponent<
     return labelList || [];
   };
   render() {
-    const { onChange, disabled = false, options, value, defaultValue } = this.props;
+    const { onChange, disabled = false, options = [], value, defaultValue } = this.props;
     let hasImg = false;
     const dataSource = options.map((item: any) => {
       if (typeof item == 'string') {
