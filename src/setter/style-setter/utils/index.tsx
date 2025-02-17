@@ -83,12 +83,9 @@ export function hexify(color: string) {
   const r = Math.floor(a * parseInt(values[0]) + (1 - a) * 255);
   const g = Math.floor(a * parseInt(values[1]) + (1 - a) * 255);
   const b = Math.floor(a * parseInt(values[2]) + (1 - a) * 255);
-  return (
-    `#${
-    (`0${  r.toString(16)}`).slice(-2)
-    }${(`0${  g.toString(16)}`).slice(-2)
-    }${(`0${  b.toString(16)}`).slice(-2)}`
-  );
+  return `#${`0${r.toString(16)}`.slice(-2)}${`0${g.toString(16)}`.slice(
+    -2,
+  )}${`0${b.toString(16)}`.slice(-2)}`;
 }
 
 export function parseToCssCode(styleData: StyleData) {
@@ -104,6 +101,7 @@ export function parseToCssCode(styleData: StyleData) {
         attributes: parseStyleData,
       },
     },
+    attributes: {},
   };
 
   return toCSS(cssJson);
@@ -154,11 +152,11 @@ export const unifyStyle = (value: string) => {
 };
 
 export const getUnit = (value: string) => {
-  if(typeof value !== 'string') return ''
-  if (value != undefined && value != null){
-    return value.replace(/^-?[0-9]\d*/g, '')
+  if (typeof value !== 'string') return '';
+  if (value != undefined && value != null) {
+    return value.replace(/^-?[0-9]\d*/g, '');
   }
-}
+};
 
 export function isCssVarBind(value: any) {
   if (typeof value === 'string') {
